@@ -23,8 +23,8 @@ def take_request():
             voice = listener.listen(source)
             command = listener.recognize_google(voice)
             command = command.lower()
-            if 'slave' in command:
-                command = command.replace('slave', '')
+            if 'jarvis' in command:
+                command = command.replace('jarvis', '')
                 print(command)
 
     except:
@@ -39,6 +39,10 @@ def running_slave():
         song = command.replace('play', '')
         talk('playing' + song)
         pywhatkit.playonyt(song)
+    elif 'google' in command:
+        search = command.replace('google', '')
+        talk(search)
+        pywhatkit.search(search)
     elif 'time' in command:
         time = datetime.datetime.now().strftime('%H:%M')
         talk('The current time is, ' + time)
@@ -57,5 +61,5 @@ def running_slave():
     else:
         talk('Please repeat.')
 
-#while True:
-running_slave()
+while True:
+    running_slave()
